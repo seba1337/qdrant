@@ -653,6 +653,8 @@ impl GraphLayers {
             GraphLinksFormat::Compressed,
             GraphLinksFormat::Plain,
         ] {
+            // TODO: whether `fs.exists` performs extra requests?
+            //       If so, we'd like to assume the format without fs-probing.
             if fs.exists(&Self::get_links_path(dir, format))? {
                 return Ok(Some(format));
             }
